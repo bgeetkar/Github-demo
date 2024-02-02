@@ -1,4 +1,4 @@
-name: Release validation unit tests
+name: User input github action
 
 on:
   # pull_request:
