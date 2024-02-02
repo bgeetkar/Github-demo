@@ -1,7 +1,7 @@
 name: Release validation unit tests
 
 on:
-  # pull_request:
+  pull_request:
   workflow_dispatch:
     inputs:
       CUSTOMER:
