@@ -1,18 +1,15 @@
-name: Hello World
+name: Github action user input
 
 on:
-  push:
-    branches:
-      - main  # Change this to your default branch if it's not 'main'
-
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+  
 jobs:
-  build:
-    runs-on: ubuntu-latest  # You can change the runner environment
-
+  greet:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Run Hello World
-      run: |
-        echo "Hello, World!"
+      - name: Greet User
+        run: echo "Hello, ${{ github.event.inputs.name }}!"
