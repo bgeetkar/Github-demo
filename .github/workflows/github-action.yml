@@ -1,15 +1,45 @@
-name: user input
+name: Release validation unit tests
 
 on:
+  # pull_request:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Your name'
+      CUSTOMER:
+        description: Customer name (e.g., ncoint)
         required: true
-  
+        type: string
+      CUSTOMER_ENVIRONMENT:
+        description: Customer environment (e.g., aparmar-sandbox)
+        required: true
+        type: string
+      AWS_REGION:
+        description: AWS region
+        required: true
+        default: eu-west-1
+        type: choice
+        options:
+          - ap-northeast-1
+          - ap-southeast-1
+          - ap-southeast-2
+          - ca-central-1
+          - eu-central-1
+          - eu-west-1
+          - eu-west-2
+          - eu-west-3
+          - us-east-1
+      SITE_URL:
+        description: Site URL (e.g., aparmar.beta.nuxeocloud.com)
+        required: true
+        type: string
+
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
       - name: Greet User
-        run: echo "Hello, ${{ github.event.inputs.name }}!"
+        run: |
+          echo "Hello, ${{ github.event.inputs.SITE_URL }}!"
+          echo "Hello, ${{ github.event.inputs.AWS_REGION }}!"
+          echo "Hello, ${{ github.event.inputs.CUSTOMER_ENVIRONMENT }}!"
+          echo "Hello, ${{ github.event.inputs.CUSTOMER }}!"
+        
