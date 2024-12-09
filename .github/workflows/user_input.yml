@@ -1,0 +1,37 @@
+on:
+  workflow_dispatch:
+    inputs:
+      CUSTOMER:
+        description: Customer name (e.g., ncoint)
+        required: true
+        type: string
+      CUSTOMER_ENVIRONMENT:
+        description: Customer environment (e.g., aparmar-sandbox)
+        required: true
+        type: string
+      AWS_REGION:
+        description: AWS region
+        required: true
+        default: eu-west-1
+        type: choice
+        options:
+          - ap-northeast-1
+          - ap-southeast-1
+          - ap-southeast-2
+          - ca-central-1
+          - eu-central-1
+          - eu-west-1
+          - eu-west-2
+          - eu-west-3
+          - us-east-1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print
+        run: echo "Test template was created for manuall running"
